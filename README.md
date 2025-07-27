@@ -42,11 +42,4 @@ The fastest algorithm is calculated dynamically based on the total number of ste
 
 Tech Stack
 React + TypeScript
-
 Tailwind CSS for styling
-
-Custom hooks and components for algorithm logic and UI
-
-Contributing
-Feel free to open issues or submit pull requests!
-Suggestions for new algorithms or improvements are welcome.

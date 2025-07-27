@@ -50,4 +50,3 @@ Custom hooks and components for algorithm logic and UI
 Contributing
 Feel free to open issues or submit pull requests!
 Suggestions for new algorithms or improvements are welcome.
->>>>>>> 6ac5c7ed8b6197a3b4eb0b67e59cad3d3854409b

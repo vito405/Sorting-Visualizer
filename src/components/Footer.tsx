@@ -7,7 +7,7 @@ const Footer = () => {
           <p className="text-sm leading-relaxed">
             Created by Vito Mortalo
             <br />
-            Eamil@gamil.com
+            vitomortalo99@gamil.com
           </p>
         </div>
 

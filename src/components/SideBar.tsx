@@ -1,13 +1,44 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 const SideBar = () => {
   const [menu, setMenu] = useState(false);
+  const sideBarRef = useRef<HTMLDivElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const location = useLocation();
+
+  useEffect(() => {
+    setMenu(false);
+  }, [location]);
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        menu &&
+        sideBarRef.current &&
+        !sideBarRef.current.contains(event.target as Node) &&
+        buttonRef.current &&
+        !buttonRef.current.contains(event.target as Node)
+      ) {
+        setMenu(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [menu]);
+
+  useEffect(() => {
+    console.log("Sidebar ref:", sideBarRef.current);
+  }, []);
 
   return (
     <>
       <button
+        ref={buttonRef}
         className="fixed top-4 left-4 text-3xl z-50 bg-[var(--svg-bg)] text-[var(--svg)] p-2 rounded shadow-md hover:bg-[var(--button-hover)]"
         onClick={() => setMenu(!menu)}
       >
@@ -15,6 +46,7 @@ const SideBar = () => {
       </button>
 
       <div
+        ref={sideBarRef}
         className={`fixed top-0 left-0 h-full text-[var(--text)] w-64 bg-[var(--bg)] shadow-md z-40 transform transition-transform duration-500 ease-in-out ${
           menu ? "translate-x-0" : "-translate-x-full"
         }`}
